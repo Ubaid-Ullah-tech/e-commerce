@@ -1,0 +1,6 @@
+/* custom.css */
+  .nav-link:hover {
+    color: #077dfc; /* Darker color on hover */
+    text-decoration: underline; /* Underline on hover */
+  }
+  

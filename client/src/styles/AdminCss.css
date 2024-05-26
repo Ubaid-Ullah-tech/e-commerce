@@ -1,0 +1,22 @@
+.text-center {
+    text-align: center;
+  }
+  
+  .dashboard-menu {
+    margin-top: 20px;
+  }
+  
+  .dashboard-menu h4 {
+    margin-bottom: 10px;
+  }
+  
+  .list-group-item {
+    padding: 10px 15px;
+    border: none;
+    border-bottom: 1px solid #dee2e6;
+  }
+  
+  .list-group-item:hover {
+    background-color: #f8f9fa;
+  }
+  
