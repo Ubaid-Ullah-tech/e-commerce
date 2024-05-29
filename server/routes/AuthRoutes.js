@@ -8,25 +8,25 @@ router.post('/register', registerController)
 // login routing
 router.post('/login', loginController)
 
-//test rout
+//test routee
 router.get('/test', requireSignIn, isAdmin, testController)
 
-// Forgot password
+// Forgot passwordd
 
 router.post('/forgot-password', forgotPasswordController)
 
-// protected user route
+// protected user routee
 router.get('/user-auth', requireSignIn , (req,res)=>{
     res.status(200).send({ok: true});
 }) 
 
-// protected admin route
+// protected admin routee
 router.get('/admin-auth', requireSignIn, isAdmin , (req,res)=>{
     res.status(200).send({ok: true});
 }) 
-// update route
+// update routee
 router.put('/profile' , requireSignIn, updateProfileController)
-// order route
+// order routee
 router.get('/orders', requireSignIn, getOrdersController)
 
 router.get('/all-orders', requireSignIn, getAllOrdersController)

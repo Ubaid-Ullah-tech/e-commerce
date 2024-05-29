@@ -1,30 +1,132 @@
-import React from 'react'
-import { NavLink } from 'react-router-dom'
-import '../../styles/FooterStyle.css'
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+import styled from 'styled-components';
+import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from 'react-icons/fa';
+
+const FooterContainer = styled.footer`
+  background-color: #343a40;
+  color: #fff;
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  @media (min-width: 768px) {
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+  }
+`;
+
+const FooterLinks = styled.div`
+  margin: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  @media (min-width: 768px) {
+    flex-direction: row;
+  }
+  a {
+    color: #fff;
+    margin: 0.5rem;
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+`;
+
+const SocialMedia = styled.div`
+  display: flex;
+  margin: 1rem 0;
+  a {
+    color: #fff;
+    margin: 0 0.5rem;
+    font-size: 1.5rem;
+    &:hover {
+      color: #007bff;
+    }
+  }
+`;
+
+const Newsletter = styled.div`
+  margin: 1rem 0;
+  input {
+    padding: 0.5rem;
+    border: none;
+    border-radius: 4px;
+    margin-right: 0.5rem;
+  }
+  button {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    &:hover {
+      background-color: #0056b3;
+    }
+  }
+`;
+
 const Footer = () => {
   return (
-      <div className="card text-center">
-  <div className="card-header">
-    Featured
-  </div>
-  <div className="card-body">
-    <h5 className="card-title">Ecommerce Shopping</h5>
-    <p className="card-text">An e-commerce website offers a seamless and convenient platform for online shopping, providing customers with access of products and services from the comfort of their own homes. With user-friendly interfaces and secure payment gateways, allowing users to browse, compare, and purchase items with ease. offering a hassle-free way to shop anytime, anywhere.
-</p>
-    <NavLink to="/" className="btn btn-primary">Go To HomePage</NavLink>
-    <NavLink to="/about" className="nav-link text-muted ">About</NavLink>
-    <NavLink to="/contact" className="nav-link text-muted">Contact</NavLink>
-    <NavLink to="/privacy" className="nav-link text-muted">Privacy</NavLink>
-  </div>
-  <div className="card-footer text-body-secondary">
-    2 days ago
-  </div>
-</div>
+    <FooterContainer>
+      <FooterLinks>
+        <NavLink to="/about">About</NavLink>
+        <NavLink to="/contact">Contact</NavLink>
+        <NavLink to="/privacy-policy">Privacy Policy</NavLink>
+      </FooterLinks>
+      <SocialMedia>
+        <a href="https://facebook.com" aria-label="Facebook"><FaFacebookF /></a>
+        <a href="https://twitter.com" aria-label="Twitter"><FaTwitter /></a>
+        <a href="https://instagram.com" aria-label="Instagram"><FaInstagram /></a>
+        <a href="https://linkedin.com" aria-label="LinkedIn"><FaLinkedinIn /></a>
+      </SocialMedia>
+      <Newsletter>
+        <input type="email" placeholder="Subscribe to our newsletter" />
+        <button>Subscribe</button>
+      </Newsletter>
+    </FooterContainer>
+  );
+};
 
-  )
-}
+export default Footer;
 
-export default Footer
+
+
+
+
+
+
+
+// import React from 'react'
+// import { NavLink } from 'react-router-dom'
+// import '../../styles/FooterStyle.css'
+// const Footer = () => {
+//   return (
+//       <div className="card text-center">
+//   <div className="card-header">
+//     Featured
+//   </div>
+//   <div className="card-body">
+//     <h5 className="card-title">Ecommerce Shopping</h5>
+//     <p className="card-text">An e-commerce website offers a seamless and convenient platform for online shopping, providing customers with access of products and services from the comfort of their own homes. With user-friendly interfaces and secure payment gateways, allowing users to browse, compare, and purchase items with ease. offering a hassle-free way to shop anytime, anywhere.
+// </p>
+//     <NavLink to="/" className="btn btn-primary">Go To HomePage</NavLink>
+//     <NavLink to="/about" className="nav-link text-muted ">About</NavLink>
+//     <NavLink to="/contact" className="nav-link text-muted">Contact</NavLink>
+//     <NavLink to="/privacy" className="nav-link text-muted">Privacy</NavLink>
+//   </div>
+//   <div className="card-footer text-body-secondary">
+//     2 days ago
+//   </div>
+// </div>
+
+//   )
+// }
+
+// export default Footer
 
 
 

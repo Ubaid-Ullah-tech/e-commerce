@@ -42,6 +42,7 @@ const AppRouter = () => {
     color: 'white',
     padding: '0%',
   };
+
   
   return (
     <div>
@@ -80,7 +81,7 @@ const AppRouter = () => {
     <Route path='/login' element={<Login/>}/>
     <Route path='/about' element={<About/>}/>
     <Route path='/contact' element={<Contact/>}/>
-    <Route path='/privacy' element={<Policy/>}/>
+    <Route path='/privacy-policy' element={<Policy/>}/>
     <Route path='/*' element={<Pagenotfound/>}/>
    </Routes>
     </main>

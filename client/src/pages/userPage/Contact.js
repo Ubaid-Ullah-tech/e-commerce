@@ -3,7 +3,8 @@ import React from "react";
 import { BiLogoGmail, BiPhoneCall, BiSupport } from "react-icons/bi";
 import { FaSquareWhatsapp } from 'react-icons/fa6'
 // import Image from '../images/contact.jpg'
-import image from '../../images/contact.jpg'
+// import image from '../../images/contact.jpg'
+import image from '../../images/contacttt.png'
 const Contact = () => {
   return (
     <div title={"Contact us"}>
