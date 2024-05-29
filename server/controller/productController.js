@@ -40,7 +40,7 @@ export const createProductController = async (req, res) => {
       case photo && photo.size > 1000000:
         return res
           .status(500)
-          .send({ error: "photo is Required and should be less then 1mb" });
+          .send({ error: "photo is Required and should be less then 1MB" });
     }
 
     const products = new productModel({ ...req.fields, slug: slugify(name) });
@@ -59,7 +59,7 @@ export const createProductController = async (req, res) => {
     res.status(500).send({
       success: false,
       error,
-      message: "Error in crearing product",
+      message: "Error while creating Product",
     });
   }
 };
