@@ -1,0 +1,16 @@
+/* Ensure that the contact container has enough padding at the bottom */
+.contact-container {
+    padding-bottom: 50px;
+  }
+  
+  /* Basic styling for the contact us section */
+  .contactus {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  
+  /* Ensure that the footer has enough margin from the contact component */
+  footer {
+    margin-top: 50px;
+  }
+  
