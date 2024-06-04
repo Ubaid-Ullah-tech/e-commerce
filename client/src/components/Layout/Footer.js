@@ -84,9 +84,11 @@ const Footer = () => {
         <a href="https://linkedin.com" aria-label="LinkedIn"><FaLinkedinIn /></a>
       </SocialMedia>
       <Newsletter>
-        <input type="email" placeholder="Subscribe to our newsletter" />
+        {/* <input type="email" placeholder="Subscribe to our newsletter" /> */}
         <button>Subscribe</button>
+        <p>ubaid ullah</p>
       </Newsletter>
+     
     </FooterContainer>
   );
 };

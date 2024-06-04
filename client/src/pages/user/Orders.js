@@ -6,7 +6,7 @@ import moment from "moment";
 
 const Orders = () => {
   const [orders, setOrders] = useState([]);
-  const [auth, setAuth] = useAuth();
+  const [auth] = useAuth();
   const getOrders = async () => {
     try {
       const { data } = await axios.get("/api/v2/auth/orders");
@@ -59,8 +59,8 @@ const Orders = () => {
                   </table>
                   <div className="container">
                     {o?.products?.map((p, i) => (
-                      <div className="row mb-2 p-3 card flex-row" key={p._id}>
-                        <div className="col-md-4">
+                      <div className="row mb-3 p-3 card flex-row" key={p._id}>
+                        <div className="col-md-40">
                           <img
                             src={`/api/v2/product/product-photo/${p._id}`}
                             className="card-img-top"
@@ -88,27 +88,3 @@ const Orders = () => {
 };
 
 export default Orders;
-
-
-
-// import React from 'react'
-// import UserMenu from '../../components/Layout/UserMenu'
-
-// const Orders = () => {
-//     return (
-//         <div title={"Your Orders"}>
-//             <div className='container-fluid p-3 m-3'>
-//                 <div className='row'>
-//                     <div className='col-md-3'>
-//                         <UserMenu />
-//                     </div>
-//                     <div className='col-md-9'>
-//                         <h1>ALL Orders</h1>
-//                     </div>
-//                 </div>
-//             </div>
-//         </div>
-//     )
-// }
-
-// export default Orders
