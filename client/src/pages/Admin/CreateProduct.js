@@ -1,11 +1,35 @@
 import React, { useState, useEffect } from "react";
- 
+import { GoogleGenerativeAI } from "@google/generative-ai";
 import AdminMenu from "./../../components/Layout/AdminMenu";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { Select } from "antd";
 import { useNavigate } from "react-router-dom";
-const { Option } = Select; 
+
+const { Option } = Select;
+const genAI = new GoogleGenerativeAI("AIzaSyA8nr9Sxcfj3UQIdjd1t588Oil4OzWWcAA"); // Replace with your API key
+async function fileToGenerativePart(file) {
+  const reader = new FileReader();
+  const base64EncodedData = await new Promise((resolve) => {
+    reader.onloadend = () => resolve(reader.result.split(',')[1]);
+    reader.readAsDataURL(file);
+  });
+
+  return {
+    inlineData: { data: base64EncodedData, mimeType: file.type },
+  };
+}
+
+async function runImageClassification(image) {
+  const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+  const prompt = "Is the object in the image a watch? Response with yes or no";
+  const imageParts = [prompt, await fileToGenerativePart(image)];
+  const result = await model.generateContent(imageParts);
+  const response = await result.response;
+  const text = response.text();
+  console.log(text);
+  return text.match(/yes/i); // Case-insensitive match for "yes"
+}
 
 const CreateProduct = () => {
   const navigate = useNavigate();
@@ -16,9 +40,9 @@ const CreateProduct = () => {
   const [category, setCategory] = useState("");
   const [quantity, setQuantity] = useState("");
   const [shipping, setShipping] = useState("");
-  const [photo, setPhoto] = useState("");
+  const [photo, setPhoto] = useState(null);
 
-  //get all category
+  // Get all categories (replace with your API call)
   const getAllCategory = async () => {
     try {
       const { data } = await axios.get("/api/v2/category/get-category");
@@ -27,7 +51,7 @@ const CreateProduct = () => {
       }
     } catch (error) {
       console.log(error);
-      toast.error("Something wwent wrong in getting catgeory");
+      toast.error("Something went wrong in getting categories");
     }
   };
 
@@ -35,7 +59,14 @@ const CreateProduct = () => {
     getAllCategory();
   }, []);
 
-  //create product function
+  const handlePhotoChange = (event) => {
+    const selectedFile = event.target.files[0];
+    if (!selectedFile) {
+      return;
+    }
+    setPhoto(selectedFile); // Update photo state
+  };
+
   const handleCreate = async (e) => {
     e.preventDefault();
     try {
@@ -46,10 +77,19 @@ const CreateProduct = () => {
       productData.append("quantity", quantity);
       productData.append("photo", photo);
       productData.append("category", category);
-      const { data } = axios.post(
-        "/api/v2/product/create-product",
-        productData
-      );
+
+      if (!photo) {
+        toast.error("Please select an image");
+        return;
+      }
+
+      const isWatch = await runImageClassification(photo);
+      if (!isWatch) {
+        toast.error("The image does not appear to contain a watch");
+        return;
+      }
+
+      const { data } = axios.post("/api/v2/product/create-product", productData);
       if (data?.success) {
         toast.error(data?.message);
       } else {
@@ -58,10 +98,9 @@ const CreateProduct = () => {
       }
     } catch (error) {
       console.log(error);
-      toast.error("something went wrong");
+      toast.error("Something went wrong");
     }
   };
-
   return (
     <div title={"Dashboard - Create Product"}>
       <div className="container-fluid m-6 p-3 dashboard">
@@ -95,7 +134,7 @@ const CreateProduct = () => {
                     type="file"
                     name="photo"
                     accept="image/*"
-                    onChange={(e) => setPhoto(e.target.files[0])}
+                    onChange={(e) => handlePhotoChange(e)}
                     hidden
                   />
                 </label>
