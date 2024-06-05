@@ -14,12 +14,10 @@ async function fileToGenerativePart(file) {
     reader.onloadend = () => resolve(reader.result.split(',')[1]);
     reader.readAsDataURL(file);
   });
-
   return {
     inlineData: { data: base64EncodedData, mimeType: file.type },
   };
 }
-
 async function runImageClassification(image) {
   const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
   const prompt = "Is the object in the image a watch? Response with yes or no";
